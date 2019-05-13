@@ -193,7 +193,7 @@ result,err := unit.UnitConv(from, to, 100)
 |微秒(μs)|μs||
 |纳秒(ns)|ns||
 
-### 数据存储(datastorage)
+### 数据存储(datasize)
 
 | 中文     | API参数 | 说明 |
 | -------- | ------- | ---- |

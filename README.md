@@ -10,7 +10,7 @@ forked from [martinlindhe/unit](https://github.com/martinlindhe/unit)
 
 Add more unit including common unit from China
 
-new function `UnitConv` to do conversion conveniently
+New function `UnitConv` to do conversion conveniently
 
 ## Installation
 

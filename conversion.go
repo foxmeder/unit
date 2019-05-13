@@ -229,7 +229,7 @@ func UnitConv(from, to string, value float64) (float64, error) {
 		hash = powerHash
 	case "duration":
 		hash = durationHash
-	case "datastorage":
+	case "datasize":
 		hash = datasizeHash
 	case "temperature":
 		return temperatureConv(f[1], t[1], value)

@@ -75,8 +75,8 @@ func TestConversion(t *testing.T) {
 		tItem{"duration.s", "duration.wk", 1, 1.6534391534391535e-6},                // 秒 星期
 		tItem{"duration.s", "duration.yr", 1, 3.1709791983764586504312531709792e-8}, // 秒 年
 		// datasize
-		tItem{"datastorage.bit", "datastorage.byte", 1, 0.125},         // bit 字节
-		tItem{"datastorage.bit", "datastorage.kb", 1, 0.0001220703125}, // bit KB
+		tItem{"datasize.bit", "datasize.byte", 1, 0.125},         // bit 字节
+		tItem{"datasize.bit", "datasize.kb", 1, 0.0001220703125}, // bit KB
 	} {
 		r, _ = UnitConv(v.from, v.to, v.value)
 		assertFloatEqual(t, r, v.expect)
