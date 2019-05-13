@@ -9,6 +9,7 @@ forked from [martinlindhe/unit](https://github.com/martinlindhe/unit)
 ## new feature
 
 Add more unit including common unit from China
+
 new function `UnitConv` to do conversion conveniently
 
 ## Installation
@@ -36,7 +37,9 @@ fmt.Println(ft.Feet(), "feet is", ft.Meters(), "meters")
 ```
 
 Conversion func usage:
+
 `from` and `to` use format of `dimension`.`name`,see [dimension list](dimension.md) for details
+
 For example:use `pressure.atm` for Atmosphere
 
 ```go
