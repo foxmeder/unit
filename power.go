@@ -3,6 +3,11 @@ package unit
 // Power represents a SI unit of power (in watts, W)
 type Power Unit
 
+// Unit converts the Power to a Unit
+func (p Power) Unit() Unit {
+	return Unit(p)
+}
+
 // ...
 const (
 	// SI
@@ -16,10 +21,10 @@ const (
 	Milliwatt       = Watt * 1e-3
 	Centiwatt       = Watt * 1e-2
 	Deciwatt        = Watt * 1e-1
-	Watt      Power = 1e0
+	Watt      Power = 1e0 // 瓦(W)
 	Decawatt        = Watt * 1e1
 	Hectowatt       = Watt * 1e2
-	Kilowatt        = Watt * 1e3
+	Kilowatt        = Watt * 1e3 // 千瓦(kW)
 	Megawatt        = Watt * 1e6
 	Gigawatt        = Watt * 1e9
 	Terawatt        = Watt * 1e12
@@ -30,6 +35,18 @@ const (
 
 	// non-SI
 	Pferdestarke = Watt * 735.49875
+
+	// misc
+	KilogramMeterPerSecond = Watt * 9.80665              // 公斤·米/秒(kg·m/s)
+	MetricHorsepower       = KilogramMeterPerSecond * 75 // 米制马力(ps)
+	FootPoundPerSecond     = Watt * 1.355817948          // 英尺·磅/秒(ft·lb/s)
+	BritishHorsepower      = FootPoundPerSecond * 550    // 英制马力(hp)
+	KilocaloriePerSecond   = Watt * 4184                 // 千卡/秒(kcal/s)
+	BTUPerSecond           = Watt * 1055.05585           // British Thermal Unit 英热单位/秒(Btu/s)
+
+	// alias
+	JoulePerSecond       = Watt // 焦耳/秒(J/s)
+	NewtonMeterPerSecond = Watt // 牛顿·米/秒(N·m/s)
 )
 
 // Yoctowatts returns the power in yW

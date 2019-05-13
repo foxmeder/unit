@@ -3,6 +3,11 @@ package unit
 // Volume represents a volume in cubic meters
 type Volume Unit
 
+// Unit converts the Volume to a Unit
+func (v Volume) Unit() Unit {
+	return Unit(v)
+}
+
 // ...
 const (
 	// SI
@@ -13,10 +18,10 @@ const (
 	CubicPicometer         = CubicMeter * 1e-36
 	CubicNanometer         = CubicMeter * 1e-27
 	CubicMicrometer        = CubicMeter * 1e-18
-	CubicMillimeter        = CubicMeter * 1e-9
-	CubicCentimeter        = CubicMeter * 1e-6
-	CubicDecimeter         = CubicMeter * 1e-3
-	CubicMeter      Volume = 1e0
+	CubicMillimeter        = CubicMeter * 1e-9 // 立方毫米(mm³)
+	CubicCentimeter        = CubicMeter * 1e-6 // 立方厘米(cm³)
+	CubicDecimeter         = CubicMeter * 1e-3 // 立方分米(dm³)
+	CubicMeter      Volume = 1e0               // 立方米(m³)
 	CubicDecameter         = CubicMeter * 1e3
 	CubicHectometer        = CubicMeter * 1e6
 	CubicKilometer         = CubicMeter * 1e9
@@ -35,13 +40,13 @@ const (
 	Femtoliter = Liter * 1e-15
 	Picoliter  = Liter * 1e-12
 	Nanoliter  = Liter * 1e-9
-	Microliter = Liter * 1e-6
-	Milliliter = Liter * 1e-3
-	Centiliter = Liter * 1e-2
-	Deciliter  = Liter * 1e-1
-	Liter      = CubicMeter * 1e-3
+	Microliter = Liter * 1e-6      // 微升(ul)
+	Milliliter = Liter * 1e-3      // 毫升(ml)
+	Centiliter = Liter * 1e-2      // 厘升(cl)
+	Deciliter  = Liter * 1e-1      // 分升(dl)
+	Liter      = CubicMeter * 1e-3 // 升(l)
 	Decaliter  = Liter * 1e1
-	Hectoliter = Liter * 1e2
+	Hectoliter = Liter * 1e2 // 公石(hl)
 	Kiloliter  = Liter * 1e3
 	Megaliter  = Liter * 1e6
 	Gigaliter  = Liter * 1e9
@@ -52,19 +57,19 @@ const (
 	Yottaliter = Liter * 1e24
 
 	// US
-	CubicInch    = Liter * 0.016387064
-	CubicFoot    = CubicInch * 1728
-	CubicYard    = CubicFoot * 27
+	CubicInch    = Liter * 0.016387064 // 立方英寸(cu in)
+	CubicFoot    = CubicInch * 1728    // 立方英尺(cu ft)
+	CubicYard    = CubicFoot * 27      // 立方码(cu yd)
 	CubicMile    = CubicYard * 5451776000
 	CubicFurlong = CubicMile * 0.00195314
 
 	// imperial liquid
-	ImperialGallon     = Liter * 4.54609
+	ImperialGallon     = Liter * 4.54609 // 英制加仑(uk gal)
 	ImperialQuart      = ImperialGallon / 4
 	ImperialPint       = ImperialQuart / 2
 	ImperialCup        = ImperialPint / 2
 	ImperialGill       = ImperialPint / 4
-	ImperialFluidOunce = ImperialGill / 5
+	ImperialFluidOunce = ImperialGill / 5 // 英制液体盎司(oz)
 	ImperialFluidDram  = ImperialFluidOunce / 8
 	ImperialPeck       = ImperialGallon * 2
 	ImperialBushel     = ImperialPeck * 4
@@ -74,14 +79,14 @@ const (
 	MetricTeaSpoon   = Milliliter * 5
 
 	// US liquid
-	USLiquidGallon = CubicInch * 231
+	USLiquidGallon = CubicInch * 231 // 美制加仑(us gal)
 	USLiquidQuart  = CubicInch * 57.75
 	USLiquidPint   = CubicInch * 28.875
 	USCup          = USLiquidPint / 2
 	USLegalCup     = Milliliter * 240
 	USGill         = Milliliter * 118.29411825
 	USFluidDram    = USFluidOunce / 8
-	USFluidOunce   = USLiquidGallon / 128
+	USFluidOunce   = USLiquidGallon / 128 // 美制液体盎司(oz)
 	USTableSpoon   = USFluidOunce / 2
 	USTeaSpoon     = USTableSpoon / 3
 
@@ -94,6 +99,7 @@ const (
 
 	// misc
 	AustralianTableSpoon = Milliliter * 20
+	AcreInch             = CubicFoot * 43560 // 亩英尺
 
 	// aliases
 	ImperialTableSpoon = MetricTableSpoon

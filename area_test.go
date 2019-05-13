@@ -49,4 +49,13 @@ func TestArea(t *testing.T) {
 	assertFloatEqual(t, 1.0, (1 * SquareDecameter).Ares())
 	assertFloatEqual(t, 1.0, (1 * SquareHectometer).Hectares())
 	assertFloatEqual(t, 1.0, (1 * SquarePerch).SquareRods())
+
+	// CN
+	assertFloatEqual(t, 1e-2, (1 * SquareCun).SquareChis())
+	assertFloatEqual(t, 600.0, (1 * Fen).SquareChis())
+	assertFloatEqual(t, 10.0, (1 * Mu).Fens())
+	assertFloatEqual(t, 100.0, (1 * Qing).Mus())
+	assertFloatEqual(t, 9.0, (1 * SquareMeter).SquareChis())
+	assertFloatEqual(t, 900.0, (1 * SquareMeter).SquareCuns())
+	assertFloatEqual(t, 0.015, (1 * SquareMeter).Fens())
 }

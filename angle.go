@@ -5,6 +5,11 @@ import "math"
 // Angle represents a SI unit of angle (in radians, ㎭)
 type Angle Unit
 
+// Unit converts the Angle to a Unit
+func (a Angle) Unit() Unit {
+	return Unit(a)
+}
+
 // ...
 const (
 	Yoctoradian          = Radian * 1e-24
@@ -14,15 +19,19 @@ const (
 	Picoradian           = Radian * 1e-12
 	Nanoradian           = Radian * 1e-9
 	Microradian          = Radian * 1e-6
-	Milliradian          = Radian * 1e-3
+	Milliradian          = Radian * 1e-3 // 毫弧度(mrad)
 	Centiradian          = Radian * 1e-2
 	Deciradian           = Radian * 1e-1
-	Radian         Angle = 1e0
-	Degree               = Radian * math.Pi / 180
-	Arcminute            = Degree / 60
-	Arcsecond            = Degree / 3600
+	Radian         Angle = 1e0                    // 弧度(rad)
+	Degree               = Radian * math.Pi / 180 // 度(°)
+	Arcminute            = Degree / 60            // 分( ′)
+	Arcsecond            = Degree / 3600          // 秒(')
 	Milliarcsecond       = Arcsecond * 1e-3
 	Microarcsecond       = Arcsecond * 1e-6
+
+	// Alias
+	RightAngle = Degree * 90  // 直角
+	Circle     = Degree * 360 // 圆周
 )
 
 // Yoctoradians returns the angle in y㎭

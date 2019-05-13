@@ -1,16 +1,20 @@
 # About
 
-[![Travis-CI](https://api.travis-ci.org/martinlindhe/unit.svg)](https://travis-ci.org/martinlindhe/unit)
-[![codecov.io](https://codecov.io/github/martinlindhe/unit/coverage.svg?branch=master)](https://codecov.io/github/martinlindhe/unit?branch=master)
-[![GoDoc](https://godoc.org/github.com/martinlindhe/unit?status.svg)](https://godoc.org/github.com/martinlindhe/unit)
+[![GoDoc](https://godoc.org/github.com/foxmeder/unit?status.svg)](https://godoc.org/github.com/foxmeder/unit)
 
 Conversion of unit library for golang
 
+forked from [martinlindhe/unit](https://github.com/martinlindhe/unit)
+
+## new feature
+
+Add more unit including common unit from China
+new function `UnitConv` to do conversion conveniently
 
 ## Installation
 
 ```
-go get -u github.com/martinlindhe/unit
+go get -u github.com/foxmeder/unit
 ```
 
 
@@ -31,6 +35,15 @@ ft := Length(n) * Foot
 fmt.Println(ft.Feet(), "feet is", ft.Meters(), "meters")
 ```
 
+Conversion func usage:
+`from` and `to` use format of `dimension`.`name`,see [dimension list](dimension.md) for details
+For example:use `pressure.atm` for Atmosphere
+
+```go
+from := "pressure.atm"
+to := "pressure.mmhg"
+result,err := unit.UnitConv(from, to, 100)
+```
 
 ## Temperature
 

@@ -3,10 +3,15 @@ package unit
 // Datasize represents a unit of data size (in bits, bit)
 type Datasize Unit
 
+// Unit converts the Datasize to a Unit
+func (d Datasize) Unit() Unit {
+	return Unit(d)
+}
+
 // ...
 const (
 	// base 10 (SI prefixes)
-	Bit      Datasize = 1e0
+	Bit      Datasize = 1e0 // 比特(bit)
 	Kilobit           = Bit * 1e3
 	Megabit           = Bit * 1e6
 	Gigabit           = Bit * 1e9
@@ -16,7 +21,7 @@ const (
 	Zettabit          = Bit * 1e21
 	Yottabit          = Bit * 1e24
 
-	Byte      = Bit * 8
+	Byte      = Bit * 8 // 字节(b)
 	Kilobyte  = Byte * 1e3
 	Megabyte  = Byte * 1e6
 	Gigabyte  = Byte * 1e9
@@ -36,12 +41,12 @@ const (
 	Zebibit = Exbibit * 1024
 	Yobibit = Zebibit * 1024
 
-	Kibibyte = Byte * 1024
-	Mebibyte = Kibibyte * 1024
-	Gibibyte = Mebibyte * 1024
-	Tebibyte = Gibibyte * 1024
-	Pebibyte = Tebibyte * 1024
-	Exbibyte = Pebibyte * 1024
+	Kibibyte = Byte * 1024     // 千字节(kb)
+	Mebibyte = Kibibyte * 1024 // 兆字节(mb)
+	Gibibyte = Mebibyte * 1024 // 千兆字节(gb)
+	Tebibyte = Gibibyte * 1024 // 太字节(tb)
+	Pebibyte = Tebibyte * 1024 // 拍字节(pb)
+	Exbibyte = Pebibyte * 1024 // 艾字节(eb)
 	Zebibyte = Exbibyte * 1024
 	Yobibyte = Zebibyte * 1024
 )

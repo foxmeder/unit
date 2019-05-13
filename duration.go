@@ -3,6 +3,11 @@ package unit
 // Duration represents a SI unit of time (in seconds, s)
 type Duration Unit
 
+// Unit converts the Duration to a Unit
+func (d Duration) Unit() Unit {
+	return Unit(d)
+}
+
 // ...
 const (
 	// SI
@@ -11,12 +16,12 @@ const (
 	Attosecond           = Second * 1e-18
 	Femtosecond          = Second * 1e-15
 	Picosecond           = Second * 1e-12
-	Nanosecond           = Second * 1e-9
-	Microsecond          = Second * 1e-6
-	Millisecond          = Second * 1e-3
+	Nanosecond           = Second * 1e-9 // 纳秒(ns)
+	Microsecond          = Second * 1e-6 // 微秒(μs)
+	Millisecond          = Second * 1e-3 // 毫秒(ms)
 	Centisecond          = Second * 1e-2
 	Decisecond           = Second * 1e-1
-	Second      Duration = 1e0
+	Second      Duration = 1e0 // 秒
 	Decasecond           = Second * 1e1
 	Hectosecond          = Second * 1e2
 	Kilosecond           = Second * 1e3
@@ -29,12 +34,14 @@ const (
 	Yottasecond          = Second * 1e24
 
 	// non-SI
-	Minute         = Second * 60
-	Hour           = Minute * 60
-	Day            = Hour * 24
-	Week           = Day * 7
+	Minute         = Second * 60 // 分钟
+	Hour           = Minute * 60 // 小时
+	Day            = Hour * 24   // 天
+	Week           = Day * 7     // 星期
 	ThirtyDayMonth = Day * 30
 	JulianYear     = Day * 365.25
+	Year           = Day * 365 // 年
+	LeapYear       = Day * 366 // 闰年
 )
 
 // Yoctoseconds returns the time in ys

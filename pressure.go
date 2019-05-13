@@ -3,6 +3,11 @@ package unit
 // Pressure represents a SI derived unit of pressure (in pascal, Pa)
 type Pressure Unit
 
+// Unit converts the Pressure to a Unit
+func (p Pressure) Unit() Unit {
+	return Unit(p)
+}
+
 // ...
 const (
 	// SI derived
@@ -16,11 +21,11 @@ const (
 	Millipascal          = Pascal * 1e-3
 	Centipascal          = Pascal * 1e-2
 	Decipascal           = Pascal * 1e-1
-	Pascal      Pressure = 1e0
+	Pascal      Pressure = 1e0 // 帕斯卡(Pa)
 	Decapascal           = Pascal * 1e1
-	Hectopascal          = Pascal * 1e2
-	Kilopascal           = Pascal * 1e3
-	Megapascal           = Pascal * 1e6
+	Hectopascal          = Pascal * 1e2 // 百帕(hpa)
+	Kilopascal           = Pascal * 1e3 // 千帕(kpa)
+	Megapascal           = Pascal * 1e6 // 兆帕(MPa)
 	Gigapascal           = Pascal * 1e9
 	Terapascal           = Pascal * 1e12
 	Petapascal           = Pascal * 1e15
@@ -36,10 +41,10 @@ const (
 	Picobar  = Bar * 1e-12
 	Nanobar  = Bar * 1e-9
 	Microbar = Bar * 1e-6
-	Millibar = Bar * 1e-3
+	Millibar = Bar * 1e-3 // 毫巴(mbar)
 	Centibar = Bar * 1e-2
 	Decibar  = Bar * 1e-1
-	Bar      = Pascal * 1e5
+	Bar      = Pascal * 1e5 // 巴(bar)
 	Decabar  = Bar * 1e1
 	Hectobar = Bar * 1e2
 	Kilobar  = Bar * 1e3
@@ -51,10 +56,18 @@ const (
 	Zettabar = Bar * 1e21
 	Yottabar = Bar * 1e24
 
-	Atmosphere          = Pascal * 1.01325 * 1e5
+	Atmosphere          = Pascal * 1.01325 * 1e5 // 标准大气压(atm)
 	TechAtmosphere      = Pascal * 9.80665 * 1e4
 	Torr                = Pascal * 133.3224
-	PoundsPerSquareInch = Pascal * 6.8948 * 1e3
+	PoundsPerSquareInch = Pascal * 6894.757         // 磅力/平方英寸(psi)
+	PoundsPerSquareFoot = PoundsPerSquareInch / 144 // 磅力/平方英尺(psf)
+
+	// misc
+	MilliHg                          = Atmosphere / 760                  // 毫米汞柱(mmHg)
+	InchHg                           = MilliHg * 25.4                    // 英寸汞柱(in Hg)
+	MilliH2o                         = Pascal * 9.8066136                // 毫米水柱
+	KilogramForcePerSquareMeter      = Pascal * 9.80665                  // 公斤力/平方米(kgf/㎡)
+	KilogramForcePerSquareCentimeter = KilogramForcePerSquareMeter * 1e4 // 公斤力/平方厘米(kgf/cm²)
 )
 
 // Yoctopascals returns the pressure in yPa

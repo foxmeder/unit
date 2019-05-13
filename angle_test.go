@@ -32,4 +32,8 @@ func TestAngle(t *testing.T) {
 	assertFloatEqual(t, 60.0, (1 * Arcminute).Arcseconds())
 	assertFloatEqual(t, 1e3, (1 * Arcsecond).Milliarcseconds())
 	assertFloatEqual(t, 1e6, (1 * Arcsecond).Microarcseconds())
+
+	// alias
+	assertFloatEqual(t, 90.0, (1 * RightAngle).Degrees())
+	assertFloatEqual(t, 360.0, (1 * Circle).Degrees())
 }

@@ -3,12 +3,18 @@ package unit
 // Temperature represents a SI unit of temperature (in kelvin, K)
 type Temperature Unit
 
+// Unit converts the Temperature to a Unit
+func (t Temperature) Unit() Unit {
+	return Unit(t)
+}
+
 // ...
 const (
-	Kelvin Temperature = 1e0
+	Kelvin Temperature = 1e0 // 开氏度(K)
 )
 
 // FromCelsius converts temperature from °C to °K
+// 摄氏度(℃)
 func FromCelsius(t float64) Temperature {
 	return Temperature(t + 273.15)
 }
@@ -19,6 +25,7 @@ func FromDelisle(t float64) Temperature {
 }
 
 // FromFahrenheit converts temperature from °F to °K
+// 华氏度(℉)
 func FromFahrenheit(t float64) Temperature {
 	return Temperature((t + 459.67) * 5 / 9)
 }
@@ -34,11 +41,13 @@ func FromNewton(t float64) Temperature {
 }
 
 // FromRankine converts temperature from °Ra to °K
+// 兰氏度(°R)
 func FromRankine(t float64) Temperature {
 	return Temperature((t-491.67)*5/9 + 273.15)
 }
 
 // FromReaumur converts temperature from °Re to °K
+// 列氏度(°Re)
 func FromReaumur(t float64) Temperature {
 	return Temperature(t*5/4 + 273.15)
 }
@@ -74,11 +83,13 @@ func (t Temperature) Newton() float64 {
 }
 
 // Rankine returns the temperature in °R
+// 兰氏度(°R)
 func (t Temperature) Rankine() float64 {
 	return float64((t-273.15)*9/5 + 491.67)
 }
 
 // Reaumur returns the temperature in °Ré
+// 列氏度(°Re)
 func (t Temperature) Reaumur() float64 {
 	return float64((t - 273.15) * 4 / 5)
 }

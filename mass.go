@@ -3,6 +3,11 @@ package unit
 // Mass represents a SI unit of mass (in grams, G)
 type Mass Unit
 
+// Unit converts the Mass to a Unit
+func (m Mass) Unit() Unit {
+	return Unit(m)
+}
+
 // ...
 const (
 	// SI
@@ -12,14 +17,14 @@ const (
 	Femtogram      = Gram * 1e-15
 	Picogram       = Gram * 1e-12
 	Nanogram       = Gram * 1e-9
-	Microgram      = Gram * 1e-6
-	Milligram      = Gram * 1e-3
+	Microgram      = Gram * 1e-6 // 微克(μg)
+	Milligram      = Gram * 1e-3 // 毫克(mg)
 	Centigram      = Gram * 1e-2
 	Decigram       = Gram * 1e-1
-	Gram           = Kilogram * 1e-3
+	Gram           = Kilogram * 1e-3 // 克
 	Decagram       = Gram * 1e1
 	Hectogram      = Gram * 1e2
-	Kilogram  Mass = 1e0
+	Kilogram  Mass = 1e0 // 千克 公斤
 	Megagram       = Gram * 1e6
 	Gigagram       = Gram * 1e9
 	Teragram       = Gram * 1e12
@@ -29,29 +34,39 @@ const (
 	Yottagram      = Gram * 1e24
 
 	// non-SI
-	Tonne     = Megagram
+	Tonne     = Megagram // 吨(t)
 	Kilotonne = Gigagram
 	Megatonne = Teragram
 	Gigatonne = Petagram
 	Teratonne = Exagram
 	Petatonne = Zettagram
 	Exatonne  = Yottagram
+	Quintal   = Kilogram * 1e2  // 公担(q)
+	Carat     = Milligram * 2e2 // 克拉(ct)
 
-	// US, avoirdupois
-	TroyGrain          = Milligram * 64.79891
-	AvoirdupoisDram    = AvoirdupoisOunce / 16
-	AvoirdupoisOunce   = TroyGrain * 437.5
-	AvoirdupoisPound   = TroyGrain * 7000
-	UsStone            = AvoirdupoisPound * 14
+	// US, avoirdupois, 常衡
+	TroyGrain          = Milligram * 64.79891  // 格令
+	AvoirdupoisDram    = AvoirdupoisOunce / 16 // 打兰
+	AvoirdupoisOunce   = TroyGrain * 437.5     // 盎司
+	AvoirdupoisPound   = TroyGrain * 7000      // 磅
+	UsStone            = AvoirdupoisPound * 14 // 英石
 	UsQuarter          = ShortHundredweight / 4
-	ShortHundredweight = AvoirdupoisPound * 100
+	ShortHundredweight = AvoirdupoisPound * 100  // 美担
+	ShortTon           = ShortHundredweight * 20 // 短吨
 
 	// UK
-	UkStone           = Gram * 6350.29318
+	UkStone           = Gram * 6350.29318 // 英石(st)
 	UkQuarter         = LongHundredweight / 4
-	LongHundredweight = UkStone * 8
+	LongHundredweight = UkStone * 8 // 英担
 	TroyOunce         = TroyGrain * 480
 	TroyPound         = TroyGrain * 5760
+	LongTon           = LongHundredweight * 20 // 长吨(lt)
+
+	// CN
+	Qian  = Gram * 5   // 钱
+	Liang = Qian * 10  // 两
+	Jin   = Liang * 10 // 斤
+	Dan   = Jin * 100  // 担
 
 	// aliases
 	CentalHundredweight   = ShortHundredweight // british
@@ -256,4 +271,44 @@ func (m Mass) LongHundredweights() float64 {
 // ShortHundredweights returns the mass in cwt
 func (m Mass) ShortHundredweights() float64 {
 	return float64(m / ShortHundredweight)
+}
+
+// Quintals returns the mass in quintal(公担)
+func (m Mass) Quintals() float64 {
+	return float64(m / Quintal)
+}
+
+// Carats returns the mass in carat(克拉)
+func (m Mass) Carats() float64 {
+	return float64(m / Carat)
+}
+
+// ShortTons returns the mass in short ton(短吨)
+func (m Mass) ShortTons() float64 {
+	return float64(m / ShortTon)
+}
+
+// LongTons returns the mass in long ton(长吨)
+func (m Mass) LongTons() float64 {
+	return float64(m / LongTon)
+}
+
+// Qians returns the mass in qian(钱)
+func (m Mass) Qians() float64 {
+	return float64(m / Qian)
+}
+
+// Liangs returns the mass in liang(两)
+func (m Mass) Liangs() float64 {
+	return float64(m / Liang)
+}
+
+// Jins returns the mass in jin(斤)
+func (m Mass) Jins() float64 {
+	return float64(m / Jin)
+}
+
+// Dans returns the mass in dan(担)
+func (m Mass) Dans() float64 {
+	return float64(m / Dan)
 }

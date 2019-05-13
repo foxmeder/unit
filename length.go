@@ -3,6 +3,11 @@ package unit
 // Length represents a SI unit of length (in meters, m)
 type Length Unit
 
+// Unit converts the Length to a Unit
+func (l Length) Unit() Unit {
+	return Unit(l)
+}
+
 // ...
 const (
 	// SI
@@ -10,16 +15,16 @@ const (
 	Zeptometer              = Meter * 1e-21
 	Attometer               = Meter * 1e-18
 	Femtometer              = Meter * 1e-15
-	Picometer               = Meter * 1e-12
-	Nanometer               = Meter * 1e-9
-	Micrometer              = Meter * 1e-6
-	Millimeter              = Meter * 1e-3
-	Centimeter              = Meter * 1e-2
-	Decimeter               = Meter * 1e-1
-	Meter            Length = 1e0
+	Picometer               = Meter * 1e-12 // 皮米(pm)
+	Nanometer               = Meter * 1e-9  // 纳米(nm)
+	Micrometer              = Meter * 1e-6  // 微米(um)
+	Millimeter              = Meter * 1e-3  // 毫米(mm)
+	Centimeter              = Meter * 1e-2  // 厘米(cm)
+	Decimeter               = Meter * 1e-1  // 分米(dm)
+	Meter            Length = 1e0           // 米(m)
 	Decameter               = Meter * 1e1
 	Hectometer              = Meter * 1e2
-	Kilometer               = Meter * 1e3
+	Kilometer               = Meter * 1e3 // 千米(km)
 	ScandinavianMile        = Meter * 1e4
 	Megameter               = Meter * 1e6
 	Gigameter               = Meter * 1e9
@@ -30,25 +35,34 @@ const (
 	Yottameter              = Meter * 1e24
 
 	// US
-	Inch    = Meter * 0.0254
+	Inch    = Meter * 0.0254 // 英寸(in)
 	Hand    = Inch * 4
-	Foot    = Inch * 12
-	Yard    = Foot * 3
+	Foot    = Inch * 12 // 英尺(ft)
+	Yard    = Foot * 3  // 码(yd)
 	Link    = Chain / 100
 	Rod     = Yard * 5.5
 	Chain   = Rod * 4
-	Furlong = Chain * 10
-	Mile    = Meter * 1609.344
+	Furlong = Chain * 10       // 弗隆(fur)=220码
+	Mile    = Meter * 1609.344 // 英里(mi)
 
 	// US maritime
-	Fathom       = Foot * 6
+	Fathom       = Foot * 6 // 英寻(fm)
 	Cable        = NauticalMile / 10
-	NauticalMile = Meter * 1852
+	NauticalMile = Meter * 1852 // 海里(nmi)
 
 	// space
 	LunarDistance    = Kilometer * 384400
-	AstronomicalUnit = Meter * 149597870700
-	LightYear        = Meter * 9460730472580800
+	AstronomicalUnit = Meter * 149597870700     // 天文单位(AU)
+	LightYear        = Meter * 9460730472580800 // 光年(ly)
+
+	// CN
+	Hao   = Chi * 1e-4  // 毫
+	Li2   = Chi * 1e-3  // 厘
+	CnFen = Chi * 1e-2  // 分
+	Cun   = Chi * 1e-1  // 寸
+	Chi   = Meter / 3   // 尺
+	Zhang = Chi * 1e1   // 丈
+	Li    = Meter * 500 // 里
 )
 
 // Yoctometers returns the length in ym
@@ -234,4 +248,9 @@ func (l Length) AstronomicalUnits() float64 {
 // LightYears returns the length in ly
 func (l Length) LightYears() float64 {
 	return float64(l / LightYear)
+}
+
+// Haos returns the length in hao(毫)
+func (l Length) Haos() float64 {
+	return float64(l / Hao)
 }
