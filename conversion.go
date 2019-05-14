@@ -5,12 +5,34 @@ import (
 	"strings"
 )
 
+type unitItem struct {
+	UnitName string `json:"unit"`
+	UnitDime string `json:"type"`
+	UnitCode string `json:"code"`
+}
+
 var (
 	UnsupportUnit error = errors.New("unit is not supported")
 	UnsupportDime error = errors.New("Dime is not supported")
+	UnsupportLang error = errors.New("Lang is not supported")
 	NotSameDime   error = errors.New("not the same dimesion")
 	NotFloat64    error = errors.New("unit convert to float64 failed")
 )
+
+// UnitList 返回支持的单位列表
+func UnitList(dime string) ([]unitItem, error) {
+	lang := "zh-cn"
+	if dime == "" {
+		// 返回所有单位
+		return allLang2list(lang)
+	}
+	langH, ok := dime2lang[dime]
+	if !ok {
+		return nil, UnsupportDime
+	}
+	// 返回单位列表
+	return lang2list(dime, langH, lang)
+}
 
 // UnitConv 把单位从from转换成to
 func UnitConv(from, to string, value float64) (float64, error) {
@@ -25,40 +47,16 @@ func UnitConv(from, to string, value float64) (float64, error) {
 	if f[0] != t[0] {
 		return 0, NotSameDime
 	}
-	var hash unitMap
+	hash, ok := dime2unit[f[0]]
+	if ok {
+		return divConv(hash, f[1], t[1], value)
+	}
 	switch f[0] {
-	case "mass":
-		hash = massHash
-	case "length":
-		hash = lengthHash
-	case "angle":
-		hash = angleHash
-	case "speed":
-		hash = speedHash
-	case "area":
-		hash = areaHash
-	case "volumn":
-		hash = volumnHash
-	case "pressure":
-		hash = pressureHash
-	case "power":
-		hash = powerHash
-	case "duration":
-		hash = durationHash
-	case "datasize":
-		hash = datasizeHash
-	case "energy":
-		hash = energyHash
-	case "force":
-		hash = forceHash
-	case "density":
-		hash = densityHash
 	case "temperature":
 		return temperatureConv(f[1], t[1], value)
 	default:
 		return 0, UnsupportDime
 	}
-	return divConv(hash, f[1], t[1], value)
 }
 
 // 除法转换
@@ -109,4 +107,39 @@ func temperatureConv(from, to string, value float64) (float64, error) {
 		return 0, UnsupportUnit
 	}
 	return tValue, nil
+}
+
+// 全部支持的单位列表
+func allLang2list(lang string) ([]unitItem, error) {
+	// lang = "zh-cn"
+	var ret []unitItem
+	for dime, langH := range dime2lang {
+		tmp, err := lang2list(dime, langH, lang)
+		if err != nil {
+			return nil, err
+		}
+		ret = append(ret, tmp...)
+	}
+	return ret, nil
+}
+
+// 单个langMap转化为单位列表
+func lang2list(dime string, langH langMap, lang string) ([]unitItem, error) {
+	// lang = "zh-cn"
+	len := len(langH)
+	ret := make([]unitItem, len)
+	i := 0
+	for code, langTr := range langH {
+		unitName, ok := langTr[lang]
+		if !ok {
+			return nil, UnsupportLang
+		}
+		ret[i] = unitItem{
+			UnitName: unitName,
+			UnitDime: dime,
+			UnitCode: code,
+		}
+		i++
+	}
+	return ret, nil
 }

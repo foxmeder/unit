@@ -1,6 +1,7 @@
 package unit
 
 import (
+	"encoding/json"
 	"math"
 	"testing"
 )
@@ -77,14 +78,27 @@ func TestConversion(t *testing.T) {
 		// datasize
 		tItem{"datasize.bit", "datasize.byte", 1, 0.125},         // bit 字节
 		tItem{"datasize.bit", "datasize.kb", 1, 0.0001220703125}, // bit KB
+		// energy
+		tItem{"energy.cal", "energy.j", 1, 4.184},         // bit 字节
+		tItem{"energy.ps_h", "energy.j", 1, 2647795.5},    // bit KB
+		tItem{"energy.ft_lb", "energy.j", 1, 1.355817948}, //
 	} {
 		r, _ = UnitConv(v.from, v.to, v.value)
 		assertFloatEqual(t, r, v.expect)
 	}
-	// volumn
-	// temperature
-	// pressure
-	// power
-	// duration
-	// datasize
+	// 获取单位列表
+	printUnitList(t, "")
+	printUnitList(t, "pressure")
+}
+
+func printUnitList(t *testing.T, dime string) {
+	list, err := UnitList(dime)
+	if err != nil {
+		t.Fatal(err)
+	}
+	listFroPrint, err := json.MarshalIndent(list, "", "    ")
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log(string(listFroPrint))
 }

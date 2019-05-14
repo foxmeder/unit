@@ -2,6 +2,8 @@ package unit
 
 type unitMap map[string]Uniter
 
+type unitHash map[string]unitMap
+
 func (m unitMap) getElem(name string) (float64, error) {
 	unit, ok := m[name]
 	if !ok {
@@ -219,4 +221,21 @@ var densityHash unitMap = unitMap{
 	"g_cu_m":   GramPerCubicMeter,          // 克/立方米(g/m³)
 	"g_cu_dm":  GramPerCubicDecimeter,      // 克/立方分米(g/dm³)
 	"g_cu_cm":  GramPerCubicCentimeter,     // 克/立方厘米(g/cm³)
+}
+
+// 英文 和 单位列表的map
+var dime2unit unitHash = unitHash{
+	"mass":     massHash,
+	"length":   lengthHash,
+	"angle":    angleHash,
+	"speed":    speedHash,
+	"area":     areaHash,
+	"volumn":   volumnHash,
+	"pressure": pressureHash,
+	"power":    powerHash,
+	"duration": durationHash,
+	"datasize": datasizeHash,
+	"energy":   energyHash,
+	"force":    forceHash,
+	"density":  densityHash,
 }
