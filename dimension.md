@@ -11,6 +11,10 @@ go get github.com/foxmeder/unit
 参数使用`维度`.`名称`,如:标准大气压为`pressure.atm`
 
 ```go
+// 支持单位列表
+list, err := unit.UnitList("length")
+
+// 单位换算函数
 from := "pressure.atm"
 to := "pressure.mmhg"
 result,err := unit.UnitConv(from, to, 100)
