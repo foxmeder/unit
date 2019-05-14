@@ -3,6 +3,11 @@ package unit
 // Energy represents a SI unit of energy (in joules, J)
 type Energy Unit
 
+// Unit converts the Energy to a Unit
+func (v Energy) Unit() Unit {
+	return Unit(v)
+}
+
 // ...
 const (
 	// SI
@@ -16,10 +21,10 @@ const (
 	Millijoule        = Joule * 1e-3
 	Centijoule        = Joule * 1e-2
 	Decijoule         = Joule * 1e-1
-	Joule      Energy = 1e0
+	Joule      Energy = 1e0 // 焦耳 J
 	Decajoule         = Joule * 1e1
 	Hectojoule        = Joule * 1e2
-	Kilojoule         = Joule * 1e3
+	Kilojoule         = Joule * 1e3 // 千焦 kJ
 	Megajoule         = Joule * 1e6
 	Gigajoule         = Joule * 1e9
 	Terajoule         = Joule * 1e12
@@ -39,10 +44,10 @@ const (
 	MilliwattHour = WattHour * 1e-3
 	CentiwattHour = WattHour * 1e-2
 	DeciwattHour  = WattHour * 1e-1
-	WattHour      = Joule * 3600
+	WattHour      = Joule * 3600 // 瓦·时(W·h)
 	DecawattHour  = WattHour * 1e1
 	HectowattHour = WattHour * 1e2
-	KilowattHour  = WattHour * 1e3
+	KilowattHour  = WattHour * 1e3 // 千瓦·时(kW·h)/度
 	MegawattHour  = WattHour * 1e6
 	GigawattHour  = WattHour * 1e9
 	TerawattHour  = WattHour * 1e12
@@ -52,9 +57,18 @@ const (
 	YottawattHour = WattHour * 1e24
 
 	// constant from https://en.wikipedia.org/wiki/Calorie#Definitions
-	Gramcalorie = Joule * 4.184
-	Kilocalorie = Gramcalorie * 1e3
+	Gramcalorie = Joule * 4.184     // 卡 cal
+	Kilocalorie = Gramcalorie * 1e3 // 千卡 kcal
 	Megacalorie = Gramcalorie * 1e6
+
+	// misc
+	// https://en.wikipedia.org/wiki/Foot-pound_(energy)
+	// https://en.wikipedia.org/wiki/British_thermal_unit
+	FootPound             = Joule * 1.355817948    // 英尺·磅(ft·lb) 1.3558179483314004
+	BTU                   = Joule * 1055.05585     // 英热单位(btu)
+	KilogramMeter         = Joule * 9.80665        // 公斤·米(kg·m)
+	MetricHorsepowerHour  = KilogramMeter * 270000 // 米制马力·时(ps·h)
+	BritishHorsepowerHour = FootPound * 1980000    // 英制马力·时(hp·h)
 )
 
 // Yoctojoules returns the energy in yJ

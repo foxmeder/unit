@@ -61,7 +61,7 @@ func TestConversion(t *testing.T) {
 		tItem{"pressure.pa", "pressure.psi", 10000, 1.4503774389728312},    // 帕 磅力/平方英寸
 		tItem{"pressure.atm", "pressure.mmhg", 1, 760.0},                   // 大气压 mmhg
 		tItem{"pressure.inhg", "pressure.pa", 1, 3386.3881578947367},       // inhg 帕
-		tItem{"pressure.mpa", "pressure.kgf_cu_cm", 1, 10.197162129779283}, // 兆帕 公斤力/平方厘米
+		tItem{"pressure.mpa", "pressure.kgf_sq_cm", 1, 10.197162129779283}, // 兆帕 公斤力/平方厘米
 		// power
 		tItem{"power.w", "power.ps", 1000, 1.3596216173039042},     // 瓦 米制马力(ps)
 		tItem{"power.w", "power.hp", 1000, 1.3410220899228118},     // 瓦 英制马力(hp)
